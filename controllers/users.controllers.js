@@ -23,18 +23,22 @@ const registerUser = async (req, res) => {
 const loginUser = async (req, res) => {
     const { username, email, password } = req.body;
 
+    if(!email || !password){
+        return res.json("Email and password are required!");
+    }
+
     const existingUser =  await User.findOne({ where: {email} });
     if(!existingUser){
         return res.json("User doesn't exists!");
     }
 
-    if(!password === existingUser.password) {
+    if(password !== existingUser.password) {
         return res.json("Invalid email or password!");
     }
 
-    return res.json("User login successfully!", { data: {
-        username,
-        email
+    return res.json({ message: "User login successfully!" , data: {
+        username: existingUser.username,
+        email: existingUser.email
     }});
     
 
