@@ -1,7 +1,21 @@
 const { User } = require("../models/users");
 
-const testHome = (req, res) => {
-  return res.send(" Home Page of Practice-app!");
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.findAll({
+      attributes: { exclude: ["password"] } 
+    });
+
+    res.status(200).json({
+      message: "Users fetched successfully!",
+      data: users,
+    });
+  } catch (error) {
+    console.error("Error in getAllUsers:", error);
+    res.status(500).json({
+      message: "Server error while fetching users.",
+    });
+  }
 };
 
 const registerUser = async (req, res) => {
@@ -40,8 +54,8 @@ const loginUser = async (req, res) => {
         username: existingUser.username,
         email: existingUser.email
     }});
-    
-
 };
 
-module.exports = { testHome, registerUser, loginUser };
+
+
+module.exports = { getAllUsers, registerUser, loginUser };
