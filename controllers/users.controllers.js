@@ -56,6 +56,12 @@ const loginUser = async (req, res) => {
     }});
 };
 
+const deleteUser = async(req, res) => {
 
+};
 
-module.exports = { getAllUsers, registerUser, loginUser };
+const updateUser = async(req, res) => {
+
+};
+
+module.exports = { getAllUsers, registerUser, loginUser, deleteUser, updateUser };
