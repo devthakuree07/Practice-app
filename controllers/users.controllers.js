@@ -1,5 +1,9 @@
 const { User } = require("../models/users");
 
+const getUserById = async (req, res) => {
+
+};
+
 const getAllUsers = async (req, res) => {
   try {
     const users = await User.findAll({
@@ -58,4 +62,4 @@ const loginUser = async (req, res) => {
 
 
 
-module.exports = { getAllUsers, registerUser, loginUser };
+module.exports = { getAllUsers, registerUser, loginUser, getUserById };
